@@ -1,0 +1,55 @@
+<div class="continer">
+  <%= form_tag("/posts/search_form",{method: :get})do%>
+    <input type="search" name="search">
+    <input type="submit" name="" value="検索">
+  <% end %>
+
+  <!--ここにeach文を使って検索結果を表示する -->
+  <div class="main">
+    <% @posts.each do |post| %>
+     <div class="tweet-content">
+
+       <div class="tweet-left">
+         <img src="<%="/img-profiles/#{post.user.image_name}"%>">
+       </div>
+
+        <div class="tweet-right">
+          <div class="tweet-name">
+            <%= link_to(post.user.name,"/users/#{post.user.id}/profile") %>
+          </div>
+          <div class="tweet">
+            <%= link_to(post.content,"/posts/#{post.id}") %>
+          </div>
+          <% if post.video? %>
+             <div class="tweet-image">
+               <% if post.video.content_type.include?('image/') %>
+                <img src="<%= post.video%>" alt="">
+               <% else %>
+                <video src="<%= post.video%>" controls>
+               <% end %>
+               <%= link_to("画像の拡大","/posts/#{post.id}/image") %>
+             </div>
+
+           <% end %>
+           <div class="like_btn">
+             <% if @current_user != nil %>
+               <% if Like.find_by(post_id: post.id, user_id: @current_user.id) %>
+                 <%= link_to("/likes/#{post.id}/destroy", {method: :post})do %>
+                  <i class="far fa-grin-hearts processed"></i>
+                 <%end%>
+               <% else %>
+                 <%= link_to("/likes/#{post.id}/create", {method: :post})do %>
+                  <i class="far fa-grin-hearts not-process"></i>
+                 <% end %>
+               <% end %>
+
+               <%="#{Like.where(post_id: post.id).count}"%>
+             <% end %>
+           </div>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
+</div>

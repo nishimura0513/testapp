@@ -1,0 +1,23 @@
+<div class="continer">
+  <div class="form">
+    <%if @error_messagae%>
+      <%= @error_messagae %>
+    <%end%>
+   <%=form_tag("/signup")do %>
+      <div class="form-cotent">
+        <div class="signup-email">
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="">
+        </div>
+        <div class="signup-password">
+          <p>パスワード</p>
+          <input type="password" name="password" value="">
+        </div>
+      </div>
+
+      <div class="save-btn">
+        <input type="submit" name="" value="決定">
+      </div>
+   <% end %>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="continer">
+  <%=form_tag("/posts/#{@post.id}/update",{multipart:true})do %>
+    <div class="posting">
+      <% @post.errors.full_messages.each do |message| %>
+        <div class="error-mes">
+          <%= message %>
+        </div>
+      <% end %>
+      <p>ツイート</p>
+      <textarea name="content" ><%=@post.content%></textarea>
+      <div class="posting-image">
+        <input type="file" name="video"　accept="video/*,image/*">　
+      </div>
+      <input type="submit" name="" value="変更する">
+    </div>
+  <% end %>
+</div>

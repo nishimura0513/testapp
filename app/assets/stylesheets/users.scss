@@ -1,0 +1,79 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//ボタンのレイアウト
+@mixin btn {
+  input{
+    width: 20%;
+    box-shadow: 1px 2px 1px 0px #51c1d0;
+    background-color: rgba(249, 249, 249, 0.8);
+    outline: 0;
+    &:hover{
+      background-color: rgba(249, 249, 249, 1);
+      font-weight: bold;
+    }
+    &:active{
+      box-shadow: none;
+      position: relative;
+      top:1px;
+    }
+  }
+}
+
+//continerに枠組みを作成済み.
+//form用のレイアウトが下記。
+.form{
+  width:50%;
+  margin: auto;
+  text-align: center;
+  .form-cotent{
+    .edit-name, .edit-email{
+      input{
+        width: 70%;
+        height: 30px;
+        font-size: 20px;
+        outline: 0;
+      }
+    }
+  }
+}
+.edit-image{
+    @include btn;
+    input{
+      width: 70%;
+    }
+}
+.save-btn{
+  @include btn;
+  input{
+    width: 70%;
+    margin-top: 25px;
+  }
+}
+
+//新規登録、ログインのレイアウト
+
+.profile{
+ margin: auto;
+ width: 50%;
+ height: 30%;
+ text-align: center;
+}
+.profile-img{
+
+  img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+}
+.profile-name{
+
+}
+.edit{
+  a{
+    text-decoration: none;
+    color: black;
+  }
+}
+//プロフィール用のレイアウト

@@ -1,0 +1,120 @@
+/* This is a manifest file that'll be compiled into application.css, which will include all the files listed below. Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path. You're free to add application-wide styles to this file and they'll appear at the bottom of the compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS files in this directory. Styles in this file should be added after the last require_* statement. It is generally better to create a new file per style scope. = require_tree . = require_self */
+.continer { text-align: left; margin: auto; width: 80%; height: 80vh; position: relative; top: 120px; }
+
+.main { overflow: auto; height: 100%; width: 100%; }
+
+.profile-main { overflow: auto; height: 80%; width: 100%; }
+
+.tweet-content { padding: 20px; border: solid 2px; border-color: #0d94dc; display: flex; background-color: white; position: static; }
+
+.tweet-content + .tweet-content { border-top: none; border-color: #0d94dc; }
+
+.tweet-left img { border-radius: 50%; width: 100px; height: 100px; }
+
+.like_btn .processed { color: #ffafe6; background-color: #fefeff; border-radius: 50%; }
+
+.like_btn .not-process { color: #9e9e9e; }
+
+.tweet-right { padding-left: 50px; width: 60%; }
+
+.tweet-right .tweet-name { margin-bottom: 10px; }
+
+.tweet-right .tweet-name a { text-decoration: none; color: #0d94dc; word-wrap: break-word; }
+
+.tweet-right .tweet a { text-decoration: none; color: black; word-wrap: break-word; }
+
+.posting { margin: auto; height: 100%; width: 70%; }
+
+.posting p { color: #1213ab; font-weight: bold; }
+
+.posting textarea { width: 80%; height: 180px; font-size: 20px; }
+
+.posting input { width: 20%; box-shadow: 1px 2px 1px 0px #51c1d0; background-color: rgba(249, 249, 249, 0.8); outline: 0; }
+
+.posting input:hover { background-color: #f9f9f9; font-weight: bold; }
+
+.posting input:active { box-shadow: none; position: relative; top: 1px; }
+
+.posting input { width: 80%; }
+
+.form { width: 50%; margin: auto; text-align: center; }
+
+.form .form-cotent .edit-name input, .form .form-cotent .edit-email input { width: 70%; height: 30px; font-size: 20px; outline: 0; }
+
+.edit-image input { width: 20%; box-shadow: 1px 2px 1px 0px #51c1d0; background-color: rgba(249, 249, 249, 0.8); outline: 0; }
+
+.edit-image input:hover { background-color: #f9f9f9; font-weight: bold; }
+
+.edit-image input:active { box-shadow: none; position: relative; top: 1px; }
+
+.edit-image input { width: 70%; }
+
+.save-btn input { width: 20%; box-shadow: 1px 2px 1px 0px #51c1d0; background-color: rgba(249, 249, 249, 0.8); outline: 0; }
+
+.save-btn input:hover { background-color: #f9f9f9; font-weight: bold; }
+
+.save-btn input:active { box-shadow: none; position: relative; top: 1px; }
+
+.save-btn input { width: 70%; margin-top: 25px; }
+
+.profile { margin: auto; width: 50%; height: 20%; text-align: center; }
+
+.profile-img img { border-radius: 50%; width: 100px; height: 100px; }
+
+.edit a { text-decoration: none; color: black; }
+
+html, body { background: linear-gradient(-135deg, #B2FEFA, #0ED2F7); background-size: cover; width: 100vw; height: 100vh; margin: 0; }
+
+li { list-style: none; }
+
+.home { height: 100px; }
+
+.header { width: 100vw; height: 100px; background-color: rgba(255, 255, 255, 0.7); position: fixed; top: 0; z-index: 10; }
+
+.home-btn { position: fixed; top: 16px; left: 0; }
+
+.home-btn a { text-decoration: none; font-size: 30px; color: #1213ab; }
+
+.header-menu { position: fixed; top: 0; right: 0; }
+
+.header-menu ul { display: flex; }
+
+.header-menu ul li { margin: 5px 10px; }
+
+.header-menu ul li a { color: #1213ab; font-size: 25px; font-weight: bold; text-decoration: none; }
+
+.error-form { padding: 10px 0; color: white; background: #fbaa58; text-align: center; position: absolute; top: 64px; z-index: 10; width: 100%; border-radius: 0 0 2px 2px; font-size: 14px; }
+
+.error-mes { color: red; }
+
+@media screen and (max-width: 1024px) { .tweet-image img { width: 100%; height: 100%; }
+  .tweet-image video { width: 450px; height: 300px; }
+  .image-show img { width: 100%; height: 100%; }
+  .profile-name p { font-weight: bold; color: #1213ab; font-size: 18px; } }
+
+@media screen and (max-width: 896px) { .tweet-image video { width: 350px; height: 200px; }
+  .profile-main { height: 75%; }
+  .profile { display: flex; }
+  .profile .profile-text { margin-left: 40px; }
+  .profile-name p { font-weight: bold; color: #1213ab; font-size: 20px; } }
+
+@media screen and (max-width: 480px) { a { font-size: 10px; }
+  a #text { font-size: 10px; }
+  p { font-size: 10px; }
+  textarea { font-size: 11px; }
+  input { font-size: 10px; }
+  .tweet-left img { border-radius: 50%; width: 50px; height: 50px; }
+  .tweet-right { padding-left: 15px; }
+  .home-btn { position: fixed; top: 16px; left: 33%; }
+  .home-btn a { font-size: 25px; }
+  .header-menu { position: fixed; top: 7%; right: 7%; }
+  .header-menu ul li a { font-size: 10px; }
+  .tweet-image video { width: 100px; height: 100px; }
+  .profile-main { height: 65%; }
+  .profile { display: flex; }
+  .profile .profile-text { margin-left: 15px; }
+  .profile .profile-img img { width: 70px; height: 70px; }
+  .profile-name p { font-weight: bold; color: #1213ab; font-size: 15px; }
+  .posting form textarea { font-size: 11px; }
+  .posting form input { font-size: 10px; }
+  .form .form-cotent .edit-name input, .form .form-cotent .edit-email input { height: 20px; font-size: 10px; } }

@@ -1,0 +1,25 @@
+.form { width: 50%; margin: auto; text-align: center; }
+
+.form .form-cotent .edit-name input, .form .form-cotent .edit-email input { width: 70%; height: 30px; font-size: 20px; outline: 0; }
+
+.edit-image input { width: 20%; box-shadow: 1px 2px 1px 0px #51c1d0; background-color: rgba(249, 249, 249, 0.8); outline: 0; }
+
+.edit-image input:hover { background-color: #f9f9f9; font-weight: bold; }
+
+.edit-image input:active { box-shadow: none; position: relative; top: 1px; }
+
+.edit-image input { width: 70%; }
+
+.save-btn input { width: 20%; box-shadow: 1px 2px 1px 0px #51c1d0; background-color: rgba(249, 249, 249, 0.8); outline: 0; }
+
+.save-btn input:hover { background-color: #f9f9f9; font-weight: bold; }
+
+.save-btn input:active { box-shadow: none; position: relative; top: 1px; }
+
+.save-btn input { width: 70%; margin-top: 25px; }
+
+.profile { margin: auto; width: 50%; height: 20%; text-align: center; }
+
+.profile-img img { border-radius: 50%; width: 100px; height: 100px; }
+
+.edit a { text-decoration: none; color: black; }

@@ -1,0 +1,9 @@
+<div class="continer">
+  <div class="image-show">
+    <% if @post.video.content_type.include?('image/') %>
+     <img src="<%= @post.video%>" alt="">
+    <% else %>
+     <video src="<%= @post.video%>" controls>
+    <% end %>
+  </div>
+</div>

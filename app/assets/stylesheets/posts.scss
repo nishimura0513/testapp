@@ -1,0 +1,145 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$font_color: #1213ab;
+
+@mixin btn {
+  input{
+    width: 20%;
+    box-shadow: 1px 2px 1px 0px #51c1d0;
+    background-color: rgba(249, 249, 249, 0.8);
+    outline: 0;
+    &:hover{
+      background-color: rgba(249, 249, 249, 1);
+      font-weight: bold;
+    }
+    &:active{
+      box-shadow: none;
+      position: relative;
+      top:1px;
+    }
+  }
+}
+
+
+
+//共通レイアウト。
+.continer{
+  text-align: left;
+  margin:auto;
+  width: 80%;
+  height: 80vh;
+  position: relative;
+  top:120px;
+}
+
+//共通レイアウト。
+
+//ホーム,プロフィールの投稿一覧レイアウト
+.main{
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+.profile-main{
+  overflow: auto;
+  height: 80%;
+  width: 100%;
+}
+.tweet-content{
+  padding: 20px;
+  border: solid 2px ;
+  border-color: #0d94dc;
+  display: flex;
+  background-color: rgba(255, 255, 255, 1);
+  position: static;
+}
+.tweet-content + .tweet-content{
+  border-top: none;
+  border-color: #0d94dc;
+}
+.tweet-left{
+  img{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+}
+.like_btn{
+  .processed{
+    color: #ffafe6;
+    background-color: #fefeff;
+    border-radius: 50%;
+  }
+  .not-process{
+    color: #9e9e9e;
+  }
+
+}
+.tweet-right{
+  padding-left: 50px;
+  width: 60%;
+
+  .tweet-name{
+    margin-bottom: 10px;
+    a{
+      text-decoration: none;
+      color: #0d94dc;
+      word-wrap: break-word
+
+    }
+  }
+  .tweet{
+    a{
+      text-decoration: none;
+      color: black;
+      word-wrap: break-word
+
+    }
+  }
+}
+.tweet-edit{
+}
+//ホームの投稿一覧レイアウト
+
+//ツイートのレイアウト
+.posting{
+  margin:auto;
+  height: 100%;
+  width:70%;
+  p{
+    color: $font_color;
+    font-weight: bold;
+  }
+  textarea{
+    width: 80%;
+    height: 180px;
+    font-size: 20px;
+  }
+  @include btn;
+  input{
+    width: 80%;
+  }
+}
+
+.tweet-image{
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  video{
+    width: 450px;
+    height: 300px;
+  }
+}
+.image-show{
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+//ツイートのレイアウト

@@ -1,0 +1,24 @@
+<div class="continer">
+  <div class="form">
+    <%=form_tag("/users/#{@user.id}/update",{multipart:true})do%>
+      <div class="form-cotent">
+        <div class="edit-name">
+          <p>名前</p>
+          <input type="text" name="name" value="<%= @user.name %>">
+        </div>
+        <div class="edit-email">
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="<%= @user.email %>">
+        </div>
+        <div class="edit-image">
+          <p>画像</p>
+          <input type="file" name="image">
+        </div>
+      </div>
+
+      <div class="save-btn">
+        <input type="submit" name="" value="決定">
+      </div>
+    <% end %>
+  </div>
+</div>

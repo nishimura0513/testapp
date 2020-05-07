@@ -1,0 +1,44 @@
+<div class="continer">
+
+  <div class="profile">
+    <div class="profile-img">
+      <img src="<%="/img-profiles/#{@user.image_name}"%>">
+    </div>
+    <div class="profile-name">
+      <p>
+        <%= @user.name%>
+      </p>
+    </div>
+    <div class="edit">
+      <%=link_to("編集","/users/#{@user.id}/edit")%>
+    </div>
+  </div>
+　　<!--プロフィール -->
+
+  <div class="profile-menu">
+    <%= link_to("投稿一覧", "/users/#{@user.id}/profile")%>
+    <%= link_to("いいね一覧", "/likes/#{@user.id}/profile")%>
+  </div>
+  <!--いいねと投稿のページボタン -->
+  <div class="main">
+
+    <% @likes.each do |like| %>
+      <div class="tweet-content">
+        <div class="tweet-left">
+          <img src="<%="/img-profiles/#{like.post_user.image_name}"%>">
+        </div>
+        <div class="tweet-right">
+          <div class="tweet-name">
+            <%= link_to(like.post_user.name,"/users/#{like.post_user.id}/profile") %>
+          </div>
+          <div class="tweet">
+            <%= link_to(like.post.content,"/posts/#{like.post_id}") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+</div>
+
+<!--ツイート一覧。個人の -->
+</div>

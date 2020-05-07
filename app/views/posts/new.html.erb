@@ -1,0 +1,18 @@
+<div class="continer">
+  <div class="posting">
+    <%=form_tag("/posts/create",{multipart:true})do %>
+        <% @post.errors.full_messages.each do |message| %>
+          <div class="error-mes">
+            <%= message %>
+          </div>
+        <% end %>
+        <p>ツイート</p>
+        <textarea name="content" ></textarea>
+        <div class="posting-image">
+          <input type="file" name="video"　accept="video/*,image/*">　
+        </div>
+        <input type="submit" name="" value="ツイートする">
+
+    <% end %>
+  </div>
+</div>

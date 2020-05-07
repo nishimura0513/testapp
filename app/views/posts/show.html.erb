@@ -1,0 +1,54 @@
+<div class="continer">
+  <div class="main">
+    <div class="tweet-content">
+      <div class="tweet-left">
+        <img src="<%="/img-profiles/#{@post.user.image_name}"%>">
+      </div>
+      <div class="tweet-right">
+        <div class="tweet-name">
+          <%= link_to(@post.user.name,"/users/#{@post.user.id}/profile") %>
+        </div>
+  <!-- 下記は、ツイート内容-->
+        <div class="tweet">
+          <%= link_to(@post.content,"/posts/#{@post.id}") %>
+        </div>
+  <!-- 下記は、写真もしくは動画の表示-->
+        <% if @post.video? %>
+           <div class="tweet-image">
+             <% if @post.video.content_type.include?('image/') %>
+              <img src="<%= @post.video%>" alt="">
+             <% else %>
+              <video src="<%= @post.video%>" controls>
+             <% end %>
+           </div>
+
+        <% end %>
+        <!-- 下記は、いいねを表示する-->
+                  <div class="like_btn">
+                   <% if @current_user != nil %>
+                     <% if Like.find_by(post_id: @post.id, user_id: @current_user.id) %>
+                       <%= link_to("/likes/#{@post.id}/destroy", {method: :post})do %>
+                        <i class="far fa-grin-hearts processed"></i>
+                       <%end%>
+                     <% else %>
+                       <%= link_to("/likes/#{@post.id}/create", {method: :post})do %>
+                        <i class="far fa-grin-hearts not-process"></i>
+                       <% end %>
+                     <% end %>
+
+                     <%="#{Like.where(post_id: @post.id).count}"%>
+                   <% end %>
+                 </div>
+      </div>
+<!-- 下記は、編集と排除ボタン-->
+      <div class="tweet-edit">
+        <% if @current_user !=nil %>
+          <% if  @post.user_id == @current_user.id %>
+           <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+           <%= link_to("削除", "/posts/#{@post.id}/destroy",{method: :post})%>
+          <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,170 @@
+
+//PC画面用の
+@media screen and (max-width: 1024px) {
+//--画像系--
+
+.tweet-image{
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  video{
+    width: 450px;
+    height: 300px;
+  }
+}
+.image-show{
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+//--画像系--
+//プロフィール系--
+.profile-name{
+  p{
+    font-weight: bold;
+    color: #1213ab;
+    font-size: 18px;
+  }
+}
+
+
+
+//プロフィール系--
+}
+
+
+
+//タブレット用
+@media screen and (max-width: 896px) {
+
+.tweet-image{
+
+  video{
+    width: 350px;
+    height: 200px;
+  }
+}
+//プロフィール系--
+.profile-main{
+  height: 75%;
+}
+.profile {
+  display: flex;
+  .profile-text{
+    margin-left: 40px;
+  }
+}
+
+.profile-name{
+  p{
+    font-weight: bold;
+    color: #1213ab;
+    font-size: 20px;
+  }
+}
+
+
+}
+
+
+
+//スマホ用
+@media screen and (max-width: 480px) {
+
+ a{
+   font-size: 10px;
+   #text{
+     font-size: 10px;
+   }
+ }
+ p{
+   font-size: 10px;
+ }
+ textarea{
+   font-size: 11px;
+ }
+ input{
+   font-size: 10px;
+ }
+
+   //トップ画
+  .tweet-left img {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+  }
+  .tweet-right {
+     padding-left: 15px;
+  }
+  .home-btn{
+    position: fixed;
+    top:16px;
+    left: 33%;
+    a{
+      font-size: 25px;
+    }
+  }
+  .header-menu{
+    position: fixed;
+    top:7%;
+    right: 7%;
+    ul{
+      li{
+        a{
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  .tweet-image{
+    video{
+      width: 100px;
+      height: 100px;
+    }
+  }
+//プロフィール系
+  .profile-main{
+    height: 65%;
+  }
+
+  .profile{
+    display: flex;
+    .profile-text{
+      margin-left: 15px;
+    }
+    .profile-img{
+      img{
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+
+  .profile-name{
+    p{
+      font-weight: bold;
+      color: #1213ab;
+      font-size: 15px;
+    }
+  }
+
+//ツイート
+.posting textarea{
+  font-size: 11px;
+}
+.posting input{
+  font-size: 10px;
+}
+
+//編集
+.form .form-cotent .edit-name input, .form .form-cotent .edit-email input {
+
+    height: 20px;
+    font-size: 10px;
+}
+
+
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>TestAp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+      <div class="home">
+        <div class="header">
+            <div class="home-btn">
+              <%=link_to("ビビッター","/")%>
+            </div>
+            <div class="header-menu">
+              <ul>
+                <% if session[:user_id] %>
+                <li>
+                   <%= link_to("ツイート","/posts/new")%>
+                </li>
+                <li>
+                  <%= link_to("検索","/posts/search_form")%>
+                </li>
+                <li>
+                  <%= link_to("プロフィール","/users/#{session[:user_id]}/profile")%>
+                </li>
+                <li>
+                  <%= link_to("ログアウト","/signout")%>
+                </li>
+                <% else %>
+                <li>
+                  <%= link_to("ログイン","/signup")%>
+                </li>
+                <li>
+                  <%= link_to("新規登録","/users/new")%>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+        </div>
+          <% if flash[:notice]%>
+            <div class="error-form">
+              <%=flash[:notice] %>
+            </div>
+          <%end%>
+        <!--ここまでがメニュー -->
+      <%= yield %>
+
+
+  </body>
+</html>

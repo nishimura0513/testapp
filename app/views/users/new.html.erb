@@ -1,0 +1,30 @@
+<div class="continer">
+  <div class="form">
+    <%  @user.errors.full_messages.each do |message|%>
+      <div class="error-mes">
+        <%= message %>
+      </div>
+    <% end %>
+    <%=form_tag("/users/create")do%>
+      <div class="form-cotent">
+        <div class="new-name">
+          <p>名前</p>
+          <input type="text" name="name" value="">
+        </div>
+        <div class="new-email">
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="">
+        </div>
+        <div class="new-password">
+          <p>パスワード</p>
+          <input type="password" name="password" value="">
+        </div>
+      </div>
+
+      <div class="save-btn">
+        <input type="submit" name="" value="決定">
+      </div>
+    <% end %>
+
+  </div>
+</div>
