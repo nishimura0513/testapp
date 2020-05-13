@@ -5,8 +5,8 @@ before_action :no_login_user, {only: [:signout, :edit, :update]}
 before_action :ensure_correct_user, {only: [:edit, :update]}
 
   def signup_form
-
   end
+
   def signup
     @user = User.find_by(
       email: params[:email],
@@ -35,7 +35,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
       name: params[:name],
       email: params[:email],
       password: params[:password],
-      image_name: "default"
+      image_name: "default.jpg"
      )
     if @user.save
       session[:user_id]=@user.id
