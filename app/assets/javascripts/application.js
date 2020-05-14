@@ -10,27 +10,20 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require rails-ujs
+
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require rails-ujs
 
 
 
 // 全てのスクロール操作の制御（ウィンドウ表示域で固定）
 //　classにno-scrollを与えれば固定できる
 
-$(function(){
+$(document).on('turbolinks:load', function() {
 
-
-  if($(".no-scroll").length) {
-    $("body").css('overflow','hidden');
-  } else {
-    $("body").css('overflow','auto');
-  }
-
-  $(".error-form").fadeOut(4500);
-
-
+    $(".error-form").fadeOut(4500);
+    
 });

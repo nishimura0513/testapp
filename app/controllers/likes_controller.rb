@@ -26,5 +26,10 @@ before_action :no_login_user
     @user =User.find_by(id: params[:id])
   end
 
+  private
+    def like_params
+      params.permit(:id)
 
+    end
+     #strong_params
 end

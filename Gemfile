@@ -70,3 +70,8 @@ gem 'jquery-rails'
 gem 'rails-i18n'
 
 gem "carrierwave"
+
+group :development do
+  # N+1問題のクエリを警告
+  gem 'bullet'
+end

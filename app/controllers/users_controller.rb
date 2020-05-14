@@ -66,7 +66,6 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     @user.name = user_params[:name]
     @user.email = user_params[:email]
     if user_params[:image]
-      logger.debug("アップデート")
       @user.image_name = "#{@user.id}.jpg"
       image = user_params[:image]
       File.binwrite("public/img-profiles/#{@user.image_name}",image.read)

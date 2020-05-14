@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
 
   def top
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.includes(:user).all.order(created_at: :desc)
   end
 
 
@@ -26,8 +26,7 @@ class PostsController < ApplicationController
       video: post_params[:video]
     )
     if @post.save
-      logger.debug("if文の中に入りました")
-      flash[:notice] ="投稿できました"
+      flash[:notice] ="投稿しました"
       redirect_to("/")
     else
       render("posts/new")
@@ -77,9 +76,6 @@ class PostsController < ApplicationController
   def ensure_correct_user
     post = Post.find_by(id: post_params[:id])
     if post.user_id != @current_user.id
-      logger.debug("if文の中に入りました")
-      logger.debug(post.user_id)
-      logger.debug(@current_user.id)
       flash[:notice] = "ログインしているユーザー以外の編集はできません"
       redirect_to("/")
     end
@@ -89,7 +85,7 @@ class PostsController < ApplicationController
   private
     def post_params
       params.permit(:id,:content,:video)
-      
+
     end
      #strong_params
 

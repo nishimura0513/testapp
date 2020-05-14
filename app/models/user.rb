@@ -3,9 +3,7 @@ class User < ApplicationRecord
   validates :name,{presence: true, uniqueness: true}
   validates :email, {presence: true, uniqueness: true}
 
-  def user
-    return User.find_by(user_id: self.id)
-  end
+  has_many :post
 
 
 end
