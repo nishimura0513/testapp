@@ -1,5 +1,5 @@
 <div class="continer">
-  <%=form_tag("/posts/#{@post.id}/update",{multipart:true})do %>
+  <%=form_with(model: @post, multipart: true)do %>
     <div class="posting">
       <% @post.errors.full_messages.each do |message| %>
         <div class="error-mes">

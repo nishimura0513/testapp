@@ -20,7 +20,6 @@
             <div class="header-menu">
               <ul>
                 <% if session[:user_id] %>
-                <li><%=  session[:user_id] %></li>
                 <li>
                    <%= link_to("ツイート","/posts/new")%>
                 </li>

@@ -2,25 +2,31 @@ class PostsController < ApplicationController
 
   before_action :no_login_user, {only: [:new, :create, :edit, :update, :destroy, ]}
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+
+
   def top
     @posts = Post.all.order(created_at: :desc)
+  end
 
-  end
+
   def image
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(id: post_params[:id])
   end
+
 
   def new
     @post = Post.new
   end
 
+
   def create
     @post = Post.new(
-      content: params[:content],
+      content: post_params[:content],
       user_id: @current_user.id,
-      video: params[:video]
+      video: post_params[:video]
     )
     if @post.save
+      logger.debug("if文の中に入りました")
       flash[:notice] ="投稿できました"
       redirect_to("/")
     else
@@ -30,18 +36,20 @@ class PostsController < ApplicationController
 
 
   def show
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(id: post_params[:id])
   end
+
 
   def edit
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(id: post_params[:id])
   end
 
+
   def update
-    @post = Post.find_by(id: params[:id])
-    @post.content = params[:content]
+    @post = Post.find_by(id: post_params[:id])
+    @post.content = post_params[:content]
     if params[:video]
-      @post.video = params[:video]
+      @post.video = post_params[:video]
     end
     if @post.save
       flash[:notice] ="変更できました。"
@@ -51,21 +59,23 @@ class PostsController < ApplicationController
     end
   end
 
+
   def destroy
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(id: post_params[:id])
     @post.destroy
     flash[:notice] ="削除しました"
     redirect_to("/")
   end
 
+
   def search_form
-    @posts =Post.search(params[:search])#searchはモデルで作ったメソッド
+    @posts =Post.search(params[:search])
+    #searchはPOSTモデルで作ったメソッド
   end
 
 
   def ensure_correct_user
-    post = Post.find_by(id: params[:id])
-
+    post = Post.find_by(id: post_params[:id])
     if post.user_id != @current_user.id
       logger.debug("if文の中に入りました")
       logger.debug(post.user_id)
@@ -75,5 +85,12 @@ class PostsController < ApplicationController
     end
   end
   #編集などをできるユーザーの制御
+
+  private
+    def post_params
+      params.permit(:id,:content,:video)
+      
+    end
+     #strong_params
 
 end

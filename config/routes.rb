@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   get "users/new" => "users#new"
   post "users/create" => "users#create"
   post 'signup'=> "users#signup"
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   get "likes/:id/profile" => "likes#profile"
 
 
-
+  resources :users
+  resources :posts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

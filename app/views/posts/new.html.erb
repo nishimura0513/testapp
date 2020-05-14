@@ -1,6 +1,6 @@
 <div class="continer">
   <div class="posting">
-    <%=form_tag("/posts/create",{multipart:true})do %>
+    <%=form_with(model: @post, url: posts_create_path, multipart: true)do |f| %>
         <% @post.errors.full_messages.each do |message| %>
           <div class="error-mes">
             <%= message %>

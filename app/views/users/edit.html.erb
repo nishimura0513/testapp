@@ -1,6 +1,6 @@
 <div class="continer">
   <div class="form">
-    <%=form_tag("/users/#{@user.id}/update",{multipart:true})do%>
+    <%= form_with(model: @user, multipart: true)do |f|%>
       <div class="form-cotent">
         <div class="edit-name">
           <p>名前</p>

@@ -7,11 +7,12 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
   def signup_form
   end
 
+
   def signup
     @user = User.find_by(
-      email: params[:email],
+      email: user_params[:email],
     )
-    if @user && @user.authenticate(params[:password])
+    if @user && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
       redirect_to("/")
     else
@@ -19,6 +20,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
       render("users/signup_form")
     end
   end
+
 
   def signout
     session[:user_id] = nil
@@ -30,11 +32,12 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     @user =User.new
   end
 
+
   def create
     @user = User.new(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password],
+      name: user_params[:name],
+      email: user_params[:email],
+      password: user_params[:password],
       image_name: "default.jpg"
      )
     if @user.save
@@ -44,28 +47,30 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     else
       render("users/new")
     end
-
   end
 
+
   def profile
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: user_params[:id])
     @posts = Post.where(user_id: @user.id)
   end
 
-  def edit
-    @user = User.find_by(id: params[:id])
-  end
-  def update
-    @user = User.find_by(id: params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
 
-    if params[:image]
+  def edit
+    @user = User.find_by(id: user_params[:id])
+  end
+
+
+  def update
+    @user = User.find_by(id: user_params[:id])
+    @user.name = user_params[:name]
+    @user.email = user_params[:email]
+    if user_params[:image]
+      logger.debug("アップデート")
       @user.image_name = "#{@user.id}.jpg"
-      image = params[:image]
+      image = user_params[:image]
       File.binwrite("public/img-profiles/#{@user.image_name}",image.read)
     end
-
     if @user.save
       redirect_to("/users/#{@user.id}/profile")
     else
@@ -74,13 +79,22 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
     end
   end
 
+
   def ensure_correct_user
-    user = User.find_by(id: params[:id])
+    user = User.find_by(id: user_params[:id])
     if user.id != @current_user.id
       flash[:notice] = "ログインしているユーザー以外の編集はできません"
       redirect_to("/")
     end
   end
   #編集などをできるユーザーの制御
+
+
+  private
+    def user_params
+      params.permit(:id,:name,:email,:password,:image, :image_name)
+
+    end
+     #strong_params
 
 end

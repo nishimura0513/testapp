@@ -5,7 +5,7 @@
         <%= message %>
       </div>
     <% end %>
-    <%=form_tag("/users/create")do%>
+    <%=form_with(model: @user)do%>
       <div class="form-cotent">
         <div class="new-name">
           <p>名前</p>
