@@ -4,12 +4,20 @@
      <div class="tweet-content">
 
        <div class="tweet-left">
-         <img src="<%="/img-profiles/#{post.user.image_name}"%>">
+         <% if post.user %>
+          <img src="<%="/img-profiles/#{post.user.image_name}"%>">
+         <% else %>
+          <img src="<%="/img-profiles/#{post.guser.image_name}"%>">
+         <% end %>
        </div>
 
         <div class="tweet-right">
           <div class="tweet-name">
-            <%= link_to(post.user.name,"/users/#{post.user.id}/profile") %>
+            <% if post.user %>
+              <%= link_to(post.user.name,"/users/#{post.user.id}/profile") %>
+            <% else %>
+              <%= link_to(post.guser.name,"/users/#{post.guser.id}n/profile") %>
+            <% end %>
           </div>
           <div class="tweet">
             <%= link_to(post.content,"/posts/#{post.id}") %>
@@ -25,9 +33,9 @@
              </div>
 
            <% end %>
-           <div class="like_btn">
+           <div class="like_btn" >
              <% if @current_user != nil %>
-               <% if Like.find_by(post_id: post.id, user_id: @current_user.id) %>
+               <% if Like.find_by(post_id: post.id, user_id: session[:user_id]) %>
                  <%= link_to("/likes/#{post.id}/destroy", {method: :post})do %>
                   <i class="far fa-grin-hearts processed"></i>
                  <%end%>

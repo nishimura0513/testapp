@@ -12,7 +12,7 @@
       </div>
       <div class="edit">
         <% if @user == @current_user %>
-          <%=link_to("編集","/users/#{@user.id}/edit")%>
+          <%=link_to("編集","/users/#{session[:user_id]}/edit")%>
         <% end %>
       </div>
     </div>
@@ -21,8 +21,16 @@
 　　<!--プロフィール -->
 
   <div class="profile-menu">
-    <%= link_to("投稿一覧", "/users/#{@user.id}/profile")%>
-    <%= link_to("いいね一覧", "/likes/#{@user.id}/profile")%>
+    <% if User.find_by(id: @user.id) %>
+      <%= link_to("投稿一覧", "/users/#{@user.id}/profile")%>
+    <% else %>
+      <%= link_to("投稿一覧", "/users/#{@user.id}n/profile")%>
+    <% end %>
+    <% if User.find_by(id: @user.id) %>
+      <%= link_to("いいね一覧", "/likes/#{@user.id}/profile")%>
+    <% else %>
+      <%= link_to("いいね一覧", "/likes/#{@user.id}n/profile")%>
+    <% end %>
   </div>
   <!--いいねと投稿のページボタン -->
     <div class="profile-main">
@@ -30,11 +38,20 @@
       <% @posts.each do |post| %>
         <div class="tweet-content">
           <div class="tweet-left">
-            <img src="<%="/img-profiles/#{post.user.image_name}"%>">
+            <% if post.user %>
+              <img src="<%="/img-profiles/#{post.user.image_name}"%>">
+            <% else %>
+              <img src="<%="/img-profiles/#{post.guser.image_name}"%>">
+            <% end %>
           </div>
           <div class="tweet-right">
             <div class="tweet-name">
-              <%= link_to(post.user.name,"/users/#{post.user.id}/profile") %>
+              <% if post.user %>
+                <%= link_to(post.user.name,"/users/#{post.user.id}/profile") %>
+              <% else %>
+              <%= link_to(post.guser.name,"/users/#{post.guser.id}n/profile") %>
+              <% end %>
+
             </div>
             <div class="tweet">
               <%= link_to(post.content,"/posts/#{post.id}") %>

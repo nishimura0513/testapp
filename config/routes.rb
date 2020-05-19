@@ -1,6 +1,20 @@
 Rails.application.routes.draw do
 
 
+    devise_for :gusers, :controllers => {
+    :registrations => 'gusers/registrations',
+    :sessions => 'gusers/sessions',
+    omniauth_callbacks: "gusers/omniauth_callbacks"
+    }
+
+  devise_scope :guser do
+    get "guser/:id", :to => "gusers/registrations#detail"
+    get "g_signup", :to => "gusers/registrations#new"
+    get "g_login", :to => "gusers/sessions#new"
+    get "g_logout", :to => "gusers/sessions#destroy"
+  end
+  #guser
+
   get "users/new" => "users#new"
   post "users/create" => "users#create"
   post 'signup'=> "users#signup"
@@ -8,7 +22,6 @@ Rails.application.routes.draw do
   get "signout" => "users#signout"
   get "users/:id/profile" =>"users#profile"
   get "users/:id/edit" => "users#edit"
-  post "users/:id/update" => "users#update"
 
   get "/" => "posts#top"
   get "posts/new" => "posts#new"

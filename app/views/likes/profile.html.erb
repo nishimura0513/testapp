@@ -10,32 +10,50 @@
       </p>
     </div>
     <div class="edit">
-      <%=link_to("編集","/users/#{@user.id}/edit")%>
+      <%=link_to("編集","/users/#{session[:user_id]}/edit")%>
     </div>
   </div>
 　　<!--プロフィール -->
 
   <div class="profile-menu">
-    <%= link_to("投稿一覧", "/users/#{@user.id}/profile")%>
-    <%= link_to("いいね一覧", "/likes/#{@user.id}/profile")%>
+    <% if User.find_by(id: @user.id) %>
+      <%= link_to("投稿一覧", "/users/#{@user.id}/profile")%>
+    <% else %>
+      <%= link_to("投稿一覧", "/users/#{@user.id}n/profile")%>
+    <% end %>
+    <% if User.find_by(id: @user.id) %>
+      <%= link_to("いいね一覧", "/likes/#{@user.id}/profile")%>
+    <% else %>
+      <%= link_to("いいね一覧", "/likes/#{@user.id}n/profile")%>
+    <% end %>
   </div>
   <!--いいねと投稿のページボタン -->
   <div class="main">
 
     <% @likes.each do |like| %>
+     <% if like.post_user != nil %> <!-- 削除されたPOSTを表示しない -->
       <div class="tweet-content">
         <div class="tweet-left">
-          <img src="<%="/img-profiles/#{like.post_user.image_name}"%>">
+           <img src="<%="/img-profiles/#{like.post_user.image_name}"%>">
         </div>
         <div class="tweet-right">
           <div class="tweet-name">
-            <%= link_to(like.post_user.name,"/users/#{like.post_user.id}/profile") %>
+              <% if like.user %>
+                <%= link_to(like.post_user.name,"/users/#{like.post_user.id}/profile") %>
+              <% else %>
+                <%= link_to(like.post_user.name,"/users/#{like.post_user.id}n/profile") %>
+              <% end %>
           </div>
           <div class="tweet">
-            <%= link_to(like.post.content,"/posts/#{like.post_id}") %>
+               <% if like.user %>
+                  <%= link_to(like.post.content,"/posts/#{like.post_id}") %>
+                <% else %>
+                  <%= link_to(like.post.content,"/posts/#{like.post_id}n") %>
+                <% end %>
           </div>
         </div>
       </div>
+      <% end %>
     <% end %>
 
 </div>

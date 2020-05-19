@@ -2,8 +2,13 @@ class Post < ApplicationRecord
 
   validates :content, {length: {maximum: 140}, presence:true}
 
-  belongs_to :user
 
+  def user
+    return User.find_by(id: self.user_id)
+  end
+  def guser
+    return Guser.find_by(id: self.user_id)
+  end
 
   mount_uploader :image, ImageUploader
   mount_uploader :video, VideoUploader

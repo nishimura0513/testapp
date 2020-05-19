@@ -4,6 +4,7 @@ before_action :login_user,{only: [:signup,:signup_form,:new,:create]}
 before_action :no_login_user, {only: [:signout, :edit, :update]}
 before_action :ensure_correct_user, {only: [:edit, :update]}
 
+
   def signup_form
   end
 
@@ -24,6 +25,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 
   def signout
     session[:user_id] = nil
+    session[:guser_id] = nil
     flash[:notice] = "ログアウトしました"
     redirect_to("/")
   end
@@ -41,7 +43,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
       image_name: "default.jpg"
      )
     if @user.save
-      session[:user_id]=@user.id
+      session[:user_id]=@user.id.to_s
       flash[:notice]= "登録しました"
       redirect_to("/")
     else
@@ -51,18 +53,30 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 
 
   def profile
-    @user = User.find_by(id: user_params[:id])
-    @posts = Post.where(user_id: @user.id)
+    if User.find_by(id: user_params[:id])
+      @user = User.find_by(id: user_params[:id])
+    else
+      @user = Guser.find_by(id: user_params[:id])
+    end
+    @posts = Post.where(user_id: user_params[:id])
   end
 
 
   def edit
-    @user = User.find_by(id: user_params[:id])
-  end
+    if User.find_by(id: user_params[:id])
+      @user = User.find_by(id: user_params[:id])
+    else
+      @user = Guser.find_by(id: user_params[:id])
+    end
+   end
 
 
   def update
-    @user = User.find_by(id: user_params[:id])
+    if User.find_by(id: user_params[:id])
+      @user = User.find_by(id: user_params[:id])
+    else
+      @user = Guser.find_by(id: user_params[:id])
+    end
     @user.name = user_params[:name]
     @user.email = user_params[:email]
     if user_params[:image]
@@ -71,7 +85,7 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
       File.binwrite("public/img-profiles/#{@user.image_name}",image.read)
     end
     if @user.save
-      redirect_to("/users/#{@user.id}/profile")
+      redirect_to("/users/#{session[:user_id]}/profile")
     else
       flash[:notice] = "既にあるname、もしくはemailです"
       render("users/edit")
@@ -80,7 +94,11 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 
 
   def ensure_correct_user
-    user = User.find_by(id: user_params[:id])
+    if User.find_by(id: user_params[:id])
+      user = User.find_by(id: user_params[:id])
+    else
+      user = Guser.find_by(id: user_params[:id])
+    end
     if user.id != @current_user.id
       flash[:notice] = "ログインしているユーザー以外の編集はできません"
       redirect_to("/")
@@ -92,8 +110,9 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
   private
     def user_params
       params.permit(:id,:name,:email,:password,:image, :image_name)
-
     end
      #strong_params
+
+
 
 end

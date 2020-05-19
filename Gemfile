@@ -75,3 +75,8 @@ group :development do
   # N+1問題のクエリを警告
   gem 'bullet'
 end
+
+gem 'devise'
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'

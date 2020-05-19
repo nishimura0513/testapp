@@ -17,9 +17,12 @@
             <div class="home-btn">
               <%=link_to("ビビッター","/")%>
             </div>
-            <div class="header-menu">
+            <div class="header-menu" >
               <ul>
                 <% if session[:user_id] %>
+                <li>
+                  <%= session[:user_id] %>
+                </li>
                 <li>
                    <%= link_to("ツイート","/posts/new")%>
                 </li>
@@ -32,7 +35,7 @@
                 <li>
                   <%= link_to("ログアウト","/signout")%>
                 </li>
-                <% else %>
+               <% else %>
                 <li>
                   <%= link_to("ログイン","/signup")%>
                 </li>
@@ -43,7 +46,7 @@
               </ul>
             </div>
         </div>
-        
+
           <% if flash[:notice]%>
             <div class="error-form">
               <%=flash[:notice] %>
