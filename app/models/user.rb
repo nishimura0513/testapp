@@ -6,6 +6,8 @@ class User < ApplicationRecord
   def user
     return User.find_by(user_id: self.id)
   end
-
+  def guser
+    return Guser.find_by(guser_id: self.id)
+  end
 
 end

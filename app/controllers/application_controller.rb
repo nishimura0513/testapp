@@ -6,10 +6,9 @@ class ApplicationController < ActionController::Base
     if User.find_by(id: session[:user_id])
       @current_user = User.find_by(id: session[:user_id])
     else
-      @current_user = Guser.find_by(id: session[:user_id])
+      @current_user = Guser.find_by(id: session[:guser_id])
     end
   end
-  # set_current_userをbefore_action で定義することによってどこでも変数@current_userを使うことができる。
 
   def login_user
     if @current_user

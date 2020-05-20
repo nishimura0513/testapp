@@ -7,7 +7,7 @@ class Gusers::OmniauthCallbacksController < Devise::OmniauthCallbacksController
      #ユーザーがいたらそれを返し、いなければ作る。
 
     if @user.persisted?
-      session[:user_id] = ("#{@user.id}n")
+      session[:guser_id] = ("#{@user.id}n")
       flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
       sign_in_and_redirect @user, event: :authentication
     else

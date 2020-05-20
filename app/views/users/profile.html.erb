@@ -12,7 +12,11 @@
       </div>
       <div class="edit">
         <% if @user == @current_user %>
-          <%=link_to("編集","/users/#{session[:user_id]}/edit")%>
+          <% if session[:user_id] %>
+            <%=link_to("編集","/users/#{session[:user_id]}/edit")%>
+          <% else %>
+            <%=link_to("編集","/users/#{session[:guser_id]}/edit")%>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -21,14 +25,11 @@
 　　<!--プロフィール -->
 
   <div class="profile-menu">
-    <% if User.find_by(id: @user.id) %>
+    <% if session[:user_id] %>
       <%= link_to("投稿一覧", "/users/#{@user.id}/profile")%>
-    <% else %>
-      <%= link_to("投稿一覧", "/users/#{@user.id}n/profile")%>
-    <% end %>
-    <% if User.find_by(id: @user.id) %>
       <%= link_to("いいね一覧", "/likes/#{@user.id}/profile")%>
     <% else %>
+      <%= link_to("投稿一覧", "/users/#{@user.id}n/profile")%>
       <%= link_to("いいね一覧", "/likes/#{@user.id}n/profile")%>
     <% end %>
   </div>

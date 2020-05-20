@@ -19,9 +19,9 @@
             </div>
             <div class="header-menu" >
               <ul>
-                <% if session[:user_id] %>
+                <% if session[:user_id] or session[:guser_id] %>
                 <li>
-                  <%= session[:user_id] %>
+                  <%= session[:user_id] or session[:guser_id] %>
                 </li>
                 <li>
                    <%= link_to("ツイート","/posts/new")%>
@@ -30,7 +30,11 @@
                   <%= link_to("検索","/posts/search_form")%>
                 </li>
                 <li>
-                  <%= link_to("プロフィール","/users/#{session[:user_id]}/profile")%>
+                  <% if session[:user_id] %>
+                    <%= link_to("プロフィール","/users/#{session[:user_id]}/profile")%>
+                  <% else %>
+                    <%= link_to("プロフィール","/users/#{session[:guser_id]}/profile")%>
+                  <% end %>
                 </li>
                 <li>
                   <%= link_to("ログアウト","/signout")%>

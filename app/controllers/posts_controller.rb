@@ -20,11 +20,19 @@ class PostsController < ApplicationController
 
 
   def create
-    @post = Post.new(
-      content: post_params[:content],
-      user_id: session[:user_id],
-      video: post_params[:video]
-    )
+    if session[:user_id]
+      logger.debug("ユーザ1")
+      @post = Post.new(
+        content: post_params[:content],
+        user_id: session[:user_id],
+        video: post_params[:video])
+     else
+       logger.debug("ユーザ2")
+       @post = Post.new(
+         content: post_params[:content],
+         guser_id: session[:guser_id],
+         video: post_params[:video])
+     end
     if @post.save
       flash[:notice] ="投稿しました"
       redirect_to("/")

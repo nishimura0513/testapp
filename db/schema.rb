@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_05_17_091606) do
 
-  create_table "gusers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "gusers", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_091606) do
     t.index ["reset_password_token"], name: "index_gusers_on_reset_password_token", unique: true
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "post_id"
     t.string "user_id"
     t.datetime "created_at", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_091606) do
     t.string "guser_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_091606) do
     t.string "guser_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"

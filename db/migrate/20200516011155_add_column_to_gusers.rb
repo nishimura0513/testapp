@@ -4,7 +4,7 @@ class AddColumnToGusers < ActiveRecord::Migration[5.2]
     add_column :gusers, :provider, :string
     add_column :gusers, :uid, :string
     add_column :gusers, :token, :string
-    add_column :gusers, :meta, :string
+    add_column :gusers, :meta, :string, :limit =>5000
     add_column :gusers, :image_name, :string
   end
 end

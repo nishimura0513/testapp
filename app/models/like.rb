@@ -18,9 +18,9 @@ class Like < ApplicationRecord
        if User.find_by(id: post.user_id)
          return User.find_by(id: post.user_id)
        else
-         return Guser.find_by(id: post.user_id)
+         return Guser.find_by(id: post.guser_id)
        end
      end
   end
-
+  
 end

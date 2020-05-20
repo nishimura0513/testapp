@@ -7,7 +7,7 @@ class Post < ApplicationRecord
     return User.find_by(id: self.user_id)
   end
   def guser
-    return Guser.find_by(id: self.user_id)
+    return Guser.find_by(id: self.guser_id)
   end
 
   mount_uploader :image, ImageUploader
