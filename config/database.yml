@@ -30,3 +30,5 @@ test:
 production:
   <<: *default
   database: appname_development
+  username: root
+  password: password

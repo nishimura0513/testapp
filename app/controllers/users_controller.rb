@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 before_action :login_user,{only: [:signup,:signup_form,:new,:create]}
-#before_action :no_login_user, {only: [:signout, :edit, :update]}
+before_action :no_login_user, {only: [:signout, :edit, :update]}
 before_action :ensure_correct_user, {only: [:edit, :update]}
 
 
@@ -54,12 +54,13 @@ before_action :ensure_correct_user, {only: [:edit, :update]}
 
 
   def profile
-    if User.find_by(id: session[:user_id])
-      @user = User.find_by(id: user_params[:id])
-      @posts = Post.where(user_id: user_params[:id])
-    else
+    @id = user_params[:id]
+    if @id.include?("n")
       @user = Guser.find_by(id: user_params[:id])
       @posts = Post.where(guser_id: user_params[:id])
+    else
+      @user = User.find_by(id: user_params[:id])
+      @posts = Post.where(user_id: user_params[:id])
     end
   end
 

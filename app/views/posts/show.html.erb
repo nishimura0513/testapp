@@ -53,7 +53,7 @@
 <!-- 下記は、編集と排除ボタン-->
       <div class="tweet-edit">
         <% if @current_user !=nil %>
-          <% if  @post.user_id == session[:user_id] or @post.guser_id == session[:user_id]%>
+          <% if  @post.user_id == session[:user_id] or @post.guser_id == session[:guser_id]%>
            <%= link_to("編集", "/posts/#{@post.id}/edit") %>
            <%= link_to("削除", "/posts/#{@post.id}/destroy",{method: :post})%>
           <% end %>

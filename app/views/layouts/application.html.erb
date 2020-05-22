@@ -21,9 +21,6 @@
               <ul>
                 <% if session[:user_id] or session[:guser_id] %>
                 <li>
-                  <%= session[:user_id] or session[:guser_id] %>
-                </li>
-                <li>
                    <%= link_to("ツイート","/posts/new")%>
                 </li>
                 <li>

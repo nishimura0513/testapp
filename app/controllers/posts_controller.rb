@@ -21,16 +21,16 @@ class PostsController < ApplicationController
 
   def create
     if session[:user_id]
-      logger.debug("ユーザ1")
       @post = Post.new(
         content: post_params[:content],
         user_id: session[:user_id],
+        guser_id: 0,
         video: post_params[:video])
      else
-       logger.debug("ユーザ2")
        @post = Post.new(
          content: post_params[:content],
          guser_id: session[:guser_id],
+         user_id: 0,
          video: post_params[:video])
      end
     if @post.save
@@ -83,9 +83,13 @@ class PostsController < ApplicationController
 
   def ensure_correct_user
     post = Post.find_by(id: post_params[:id])
-    if post.user_id != session[:user_id]
-      flash[:notice] = "ログインしているユーザー以外の編集はできません"
-      redirect_to("/")
+
+    if session[:user_id] and post.user_id != session[:user_id]
+       flash[:notice] = "ログインしているユーザー以外の編集はできません"
+       redirect_to("/")
+     elsif  session[:guser_id] and post.guser_id != session[:guser_id]
+       flash[:notice] = "ログインしているユーザー以外の編集はできません"
+       redirect_to("/")
     end
   end
   #編集などをできるユーザーの制御

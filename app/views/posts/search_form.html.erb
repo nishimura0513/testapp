@@ -11,9 +11,9 @@
 
        <div class="tweet-left">
          <% if post.user %>
-           <img src="<%="/img-profiles/#{post.user.image_name}"%>">
+          <img src="<%="/img-profiles/#{post.user.image_name}"%>">
          <% else %>
-           <img src="<%="/img-profiles/#{post.guser.image_name}"%>">
+          <img src="<%="/img-profiles/#{post.guser.image_name}"%>">
          <% end %>
        </div>
 
@@ -35,16 +35,19 @@
                <% else %>
                 <video src="<%= post.video%>" controls>
                <% end %>
-               <%= link_to("画像の拡大","/posts/#{post.id}/image") %>
              </div>
 
            <% end %>
-           <div class="like_btn">
+           <div class="like_btn" >
              <% if @current_user != nil %>
-               <% if Like.find_by(post_id: post.id, user_id: session[:user_id]) %>
+               <% if session[:guser_id] and Like.find_by(post_id: post.id, guser_id: session[:guser_id]) %>
                  <%= link_to("/likes/#{post.id}/destroy", {method: :post})do %>
                   <i class="far fa-grin-hearts processed"></i>
                  <%end%>
+                 <% elsif session[:user_id] and Like.find_by(post_id: post.id, user_id: session[:user_id]) %>
+                   <%= link_to("/likes/#{post.id}/destroy", {method: :post})do %>
+                    <i class="far fa-grin-hearts processed"></i>
+                   <%end%>
                <% else %>
                  <%= link_to("/likes/#{post.id}/create", {method: :post})do %>
                   <i class="far fa-grin-hearts not-process"></i>

@@ -76,7 +76,14 @@ group :development do
   gem 'bullet'
 end
 
+gem "pry-rails"
+group :production, :staging do
+    gem 'unicorn'
+end
+
 gem 'devise'
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
